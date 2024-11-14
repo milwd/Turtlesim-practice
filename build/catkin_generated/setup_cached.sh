@@ -7,5 +7,4 @@
 # new environment variables
 
 # modified environment variables
-export LD_LIBRARY_PATH='/root/my_ros/devel/lib:/opt/ros/noetic/lib:/opt/ros/noetic/lib/x86_64-linux-gnu'
 export PWD='/root/turtle_ws/build'

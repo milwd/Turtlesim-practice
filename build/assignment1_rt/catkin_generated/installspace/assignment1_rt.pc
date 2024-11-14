@@ -1,0 +1,8 @@
+prefix=/root/turtle_ws/install
+
+Name: assignment1_rt
+Description: Description of assignment1_rt
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
