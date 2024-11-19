@@ -1,0 +1,5 @@
+<launch>
+	<node name="turtlesim" pkg="turtlesim" type="turtlesim_node" output="screen"/>
+	<node name="kids_node" pkg="assignment1_rt" type="kids.py" output="screen"/>
+	<node name="parent_node" pkg="assignment1_rt" type="parent.py" output="screen"/>
+</launch>
