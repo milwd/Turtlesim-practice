@@ -6,12 +6,7 @@ from geometry_msgs.msg import Twist
 from std_msgs.msg import Bool
 
 
-def stuck_help(s):
-	global stuck
-	stuck = s
-
 if __name__ == '__main__':
-	stuck = None 
 	rospy.init_node('kids_node')
 	
 	rospy.wait_for_service('spawn')
@@ -25,22 +20,24 @@ if __name__ == '__main__':
 	
 	t1_pub = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
 	t2_pub = rospy.Publisher('/turtle2/cmd_vel', Twist, queue_size=10)
-	stuck_alarm = rospy.Subscriber('is_stuck', Bool, stuck_help)
+	t_pub  = rospy.Publisher('name', Bool, queue_size=5)
 	
 	while not rospy.is_shutdown():
-		usr_input = input('enter inp').split()
-		t, vx, vy = usr_input
+		try:
+			t, vx, vy = input('ENTER INPUT (turtle1/2 x y): ').split()
+		except Exception as e:
+			raise Exception("THE PROGRAM NEEDS 3 VALUES FOR NAME X Y.")
+		if not (t == 'turtle1' or t == 'turtle2'):
+			raise Exception("NAME SHOULD BE turtle1 OR turtle2!")
+		t_pub.publish(Bool(False) if t == 'turtle1' else Bool(True)) 
+		
 		motion = Twist()
 		motion.linear.x, motion.linear.y = float(vx), float(vy)
-		
-		stuck = False
-		
 		t1_pub.publish(motion) if t == 'turtle1' else t2_pub.publish(motion)
-		
 		rospy.sleep(1)
-				
+		
 		motion = Twist()
 		t1_pub.publish(motion)
 		t2_pub.publish(motion)
 		
-	print('happy rosing')
+	print('happy ROSing')
