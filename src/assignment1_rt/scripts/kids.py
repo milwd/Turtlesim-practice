@@ -26,7 +26,7 @@ if __name__ == '__main__':
 		try:
 			t, vx, vy, ang = input('ENTER INPUT (turtle1/2 lin_x lin_y ang): ').split()
 		except Exception as e:
-			raise Exception("THE PROGRAM NEEDS 3 VALUES FOR NAME X Y.")
+			raise Exception("THE PROGRAM NEEDS 4 VALUES FOR NAME v_X v_Y v_angular.")
 		if not (t == 'turtle1' or t == 'turtle2'):
 			raise Exception("NAME SHOULD BE turtle1 OR turtle2!")
 		t_pub.publish(Bool(False) if t == 'turtle1' else Bool(True)) 
