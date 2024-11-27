@@ -25,7 +25,7 @@ def t1_s_cb(p):
 	tls = p
 
 def check_stuck(t):
-	return t.x > 9 or t.x < 1 or t.y > 9 or t.y < 1
+	return t.x > 9.5 or t.x < 2 or t.y > 9.5 or t.y < 2
 
 def check_distance(t1, t2):
 	global dist_pub

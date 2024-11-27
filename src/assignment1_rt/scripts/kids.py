@@ -24,7 +24,7 @@ if __name__ == '__main__':
 	
 	while not rospy.is_shutdown():
 		try:
-			t, vx, vy = input('ENTER INPUT (turtle1/2 x y): ').split()
+			t, vx, vy, ang = input('ENTER INPUT (turtle1/2 lin_x lin_y ang): ').split()
 		except Exception as e:
 			raise Exception("THE PROGRAM NEEDS 3 VALUES FOR NAME X Y.")
 		if not (t == 'turtle1' or t == 'turtle2'):
@@ -32,7 +32,7 @@ if __name__ == '__main__':
 		t_pub.publish(Bool(False) if t == 'turtle1' else Bool(True)) 
 		
 		motion = Twist()
-		motion.linear.x, motion.linear.y = float(vx), float(vy)
+		motion.linear.x, motion.linear.y, motion.angular.z = float(vx), float(vy), float(ang)
 		t1_pub.publish(motion) if t == 'turtle1' else t2_pub.publish(motion)
 		rospy.sleep(1)
 		
